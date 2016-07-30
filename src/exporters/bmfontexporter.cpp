@@ -1,5 +1,6 @@
 #include "bmfontexporter.h"
 #include "../fontconfig.h"
+#include "../layoutconfig.h"
 
 BMFontExporter::BMFontExporter(QObject *parent) :
     AbstractExporter(parent)
@@ -13,14 +14,21 @@ bool BMFontExporter::Export(QByteArray &out)
     // http://www.angelcode.com/products/bmfont/doc/file_format.html
 
     const FontConfig* cfg = fontConfig();
+    const LayoutConfig* lcfg = layoutConfig();
 
     out.append( QString("info")
         + QString(" face=\"%1\"").arg(cfg->family())
         + QString(" size=%1").arg(cfg->size())
         + QString(" bold=%1").arg(cfg->bold() ? 1 : 0)
         + QString(" italic=%1").arg(cfg->italic() ? 1 : 0)
+        + QString(" charset=\"%1\"").arg("")
+        + QString(" unicode=%1").arg(1)
+        + QString(" stretchH=%1").arg(100)
         + QString(" smooth=%1").arg(cfg->antialiased() ? 1 : 0)
+        + QString(" aa=%1").arg(2)
+        + QString(" padding=%1,%2,%3,%4").arg(lcfg->offsetTop()).arg(lcfg->offsetRight()).arg(lcfg->offsetBottom()).arg(lcfg->offsetLeft())
         + QString(" spacing=%1,%2").arg(cfg->charSpacing()).arg(cfg->lineSpacing())
+        + QString(" outline=%1").arg(0)
         .toUtf8()).append('\n');
 
     out.append( QString("common")
