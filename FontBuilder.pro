@@ -141,14 +141,13 @@ TARGET = FontBuilder
 INCLUDEPATH+=src/
 FREETYPE2CONFIG = $$(FREETYPE2CONFIG)
 isEmpty(FREETYPE2CONFIG) {
+    ########## CODE ONLY CONFIGURED TO BUILD ON MAC ##########
     mac {
-        INCLUDEPATH += ../include
-        INCLUDEPATH += ../include/freetype2
-        LIBS += -L../lib -lfreetype -lz
-    # macports support
-        INCLUDEPATH += /opt/local/include /opt/local/include/freetype2
-        LIBS += -L/opt/local/lib
+        # macports support
+        INCLUDEPATH += /Users/pabitra/MoonfrogGames/FontBuilder/libs/freetype2
     }
+
+    ########## BELOW CODE MIGHT NOT WORK ##########
     win32 {
         INCLUDEPATH += ../include
         INCLUDEPATH += ../include/freetype2
@@ -166,3 +165,21 @@ isEmpty(FREETYPE2CONFIG) {
 }
 OTHER_FILES += fontbuilder_ru.ts \
     fontbuilder_en.ts
+
+
+########## USER GENERATED SECTION ##########
+# Following steps auto generated after
+# selecting external library from Qt creator and added the libqtfreetype.a
+# If issue came with new system then delete and add again
+win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../../Qt/5.7/clang_64/lib/release/ -lqtfreetype
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/../../Qt/5.7/clang_64/lib/debug/ -lqtfreetype
+else:unix: LIBS += -L$$PWD/../../Qt/5.7/clang_64/lib/ -lqtfreetype
+
+INCLUDEPATH += $$PWD/../../Qt/5.7/clang_64/include
+DEPENDPATH += $$PWD/../../Qt/5.7/clang_64/include
+
+win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$PWD/../../Qt/5.7/clang_64/lib/release/libqtfreetype.a
+else:win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$PWD/../../Qt/5.7/clang_64/lib/debug/libqtfreetype.a
+else:win32:!win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$PWD/../../Qt/5.7/clang_64/lib/release/qtfreetype.lib
+else:win32:!win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$PWD/../../Qt/5.7/clang_64/lib/debug/qtfreetype.lib
+else:unix: PRE_TARGETDEPS += $$PWD/../../Qt/5.7/clang_64/lib/libqtfreetype.a
