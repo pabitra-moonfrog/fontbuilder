@@ -39,5 +39,3 @@ why here?:
 * create export into your description formats, share it, use it
 * testing, suggestions on functionality expansion
 
-![screen1](http://www.gamedev.ru/files/images/54213_1274102379_screen.jpg)
-![screen2](http://www.gamedev.ru/files/images/screen1.jpeg)
