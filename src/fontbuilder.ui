@@ -145,7 +145,7 @@
         <item>
          <widget class="QPushButton" name="pushButtonWriteFont">
           <property name="text">
-           <string>Write font</string>
+           <string>PUBLISH</string>
           </property>
          </widget>
         </item>
