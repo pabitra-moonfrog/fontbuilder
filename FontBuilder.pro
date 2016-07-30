@@ -138,6 +138,9 @@ MOC_DIR = .obj
 UI_DIR = .obj
 TARGET = FontBuilder
 
+#icon
+ICON = fontbuilder.icns
+
 INCLUDEPATH+=src/
 FREETYPE2CONFIG = $$(FREETYPE2CONFIG)
 isEmpty(FREETYPE2CONFIG) {
